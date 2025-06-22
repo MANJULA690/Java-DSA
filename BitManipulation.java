@@ -45,6 +45,20 @@ public class BitManipulation {
         return n & bitMask;
     }
 
+    public static int clearBitsInRange(int n, int i, int j) {
+        int a = ((~0) << (j + 1));
+        int b = (1 << i) - 1;
+        int bitMask = a | b;
+        return n & bitMask;
+    }
+
+    public static boolean isPowerOfTwo(int n) {
+        if (n == 0 || n < 0) {
+            return false;
+        }
+        return (n & (n - 1)) == 0;
+    }
+
     public static int countSetBits(int n) {
         int count = 0;
         while (n > 0) {
@@ -60,6 +74,8 @@ public class BitManipulation {
         // oddOrEven(3);
         // oddOrEven(14);
         // System.out.println(clearIBits(15, 2));
-        System.out.println(countSetBits(3));
+        // System.out.println(clearBitsInRange(10, 2, 4));
+        System.out.println(isPowerOfTwo(4));
+        // System.out.println(countSetBits(3));
     }
 }

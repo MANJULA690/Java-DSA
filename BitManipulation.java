@@ -75,7 +75,7 @@ public class BitManipulation {
         // oddOrEven(14);
         // System.out.println(clearIBits(15, 2));
         // System.out.println(clearBitsInRange(10, 2, 4));
-        System.out.println(isPowerOfTwo(4));
+        // System.out.println(isPowerOfTwo(4));
         // System.out.println(countSetBits(3));
     }
 }

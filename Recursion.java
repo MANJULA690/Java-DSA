@@ -90,8 +90,43 @@ public class Recursion {
         return power;
     }
 
+    // tailing problem
+    public static int tailing(int n) {
+        if (n == 0 || n == 1) {
+            return 1;
+        }
+
+        // int vertical = tailing(n - 1);
+        // int horizontal = tailing(n - 2);
+        return tailing(n - 1) + tailing(n - 2);
+    }
+
+    // remove duplicates from a String
+    public static void removeDuplicates(String str, int idx, StringBuilder newStr, boolean map[]) {
+        if (idx == str.length()) {
+            System.out.println(newStr);
+            return;
+        }
+        char currChar = str.charAt(idx);
+        if (map[currChar - 'a'] == true) {
+            removeDuplicates(str, idx + 1, newStr, map);
+        } else {
+            map[currChar - 'a'] = true;
+            removeDuplicates(str, idx + 1, newStr.append(currChar), map);
+        }
+    }
+
+    // friends pairing problem
+    public static int pairing(int n) {
+        if (n == 1 || n == 2) {
+            return n;
+        }
+        return pairing(n - 1) + (n - 1) * pairing(n - 2);
+    }
+
     public static void main(String args[]) {
         int arr[] = { 1, 2, 3, 4, 5, 3, 6, 7 };
-        System.out.println(power(2, 10));
+        // System.out.println(pairing(3));
+        removeDuplicates("applee", 0, new StringBuilder(""), new boolean[26]);
     }
 }

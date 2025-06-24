@@ -94,3 +94,7 @@ class Student {
         this.age = age;
     }
 }
+
+class Fruit{
+    
+}

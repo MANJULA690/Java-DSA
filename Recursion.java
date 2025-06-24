@@ -124,9 +124,21 @@ public class Recursion {
         return pairing(n - 1) + (n - 1) * pairing(n - 2);
     }
 
+    public static void binaryStrings(int n, int lastPlace, String str) {
+        if (n == 0) {
+            System.out.println(str);
+            return;
+        }
+        binaryStrings(n - 1, 0, str + "0");
+        if (lastPlace == 0) {
+            binaryStrings(n - 1, 1, str + "1");
+        }
+    }
+
     public static void main(String args[]) {
         int arr[] = { 1, 2, 3, 4, 5, 3, 6, 7 };
         // System.out.println(pairing(3));
-        removeDuplicates("applee", 0, new StringBuilder(""), new boolean[26]);
+        // removeDuplicates("applee", 0, new StringBuilder(""), new boolean[26]);
+        binaryStrings(3, 0, "");
     }
 }

@@ -203,6 +203,19 @@ public class Arrays {
         return index;
     }
 
+    public static int removeDuplicates(int[] nums) {
+        if (nums.length == 0)
+            return 0;
+        int j = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] != nums[i - 1]) {
+                nums[j] = nums[i];
+                j++;
+            }
+        }
+        return j;
+    }
+
     public static void main(String args[]) {
         int numbers[] = { -1, -2, -3, -4, -4 };
         int heights[] = { 4, 2, 0, 6, 3, 2, 5 };

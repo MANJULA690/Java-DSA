@@ -124,6 +124,7 @@ public class Recursion {
         return pairing(n - 1) + (n - 1) * pairing(n - 2);
     }
 
+    // binary Strings without consecutive 1's
     public static void binaryStrings(int n, int lastPlace, String str) {
         if (n == 0) {
             System.out.println(str);

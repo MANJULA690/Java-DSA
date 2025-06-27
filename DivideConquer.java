@@ -118,17 +118,11 @@ public class DivideConquer {
 
     }
 
-    public static void printArr(int arr[]) {
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
-        }
-    }
-
     public static void main(String args[]) {
-        int arr[] = { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 };
+        int arr[] = { 1, 2, 3, 4, 5 };
         // mergeSort(arr, 0, arr.length - 1);
         // quickSort(arr, 0, arr.length - 1);
         // printArr(arr);
-        // System.out.println(search(arr, 6, 0, arr.length - 1));
+
     }
 }

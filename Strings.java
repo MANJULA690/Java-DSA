@@ -61,16 +61,14 @@ public class Strings {
         return sb.toString();
     }
 
-    public int possibleStringCount(String word) {
-        int count = 0;
-        for (int i = 0; i <= word.length(); i++) {
-            if (i < word.length() - 1) {
-                if (word.charAt(i) == word.charAt(i + 1)) {
-                    count++;
-                }
+    public static int possibleStringCount(String word) {
+        int count = 1;
+        for (int i = 0; i < word.length(); i++) {
+            if (i > 0 && word.charAt(i) == word.charAt(i - 1)) {
+                count++;
             }
         }
-        return count + 1;
+        return count;
     }
 
     public static void main(String args[]) {
@@ -78,7 +76,8 @@ public class Strings {
         // System.out.println(shortestPath("NS"));
         // String fruits[] = { "apple", "mango", "banana" };
         // System.out.println(largestStr(fruits));
-        String str = "abcd";
-        System.out.println(compress(str));
+        // String str = "abcd";
+        // System.out.println(compress(str));
+        System.out.println(possibleStringCount("abcd"));
     }
 }

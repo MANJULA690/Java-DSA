@@ -61,6 +61,18 @@ public class Strings {
         return sb.toString();
     }
 
+    public int possibleStringCount(String word) {
+        int count = 0;
+        for (int i = 0; i <= word.length(); i++) {
+            if (i < word.length() - 1) {
+                if (word.charAt(i) == word.charAt(i + 1)) {
+                    count++;
+                }
+            }
+        }
+        return count + 1;
+    }
+
     public static void main(String args[]) {
         // System.out.println(isPalindrome("racecar"));
         // System.out.println(shortestPath("NS"));

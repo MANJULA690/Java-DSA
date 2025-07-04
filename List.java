@@ -40,14 +40,30 @@ public class List {
         return maxArea;
     }
 
-    // brute force
     public static boolean pairSum1(int arr[], int target) {
+
+        // brute force
         for (int i = 0; i < arr.length; i++) {
             for (int j = i + 1; j < arr.length; j++) {
                 if (arr[i] + arr[j] == target) {
                     return true;
                 }
             }
+        }
+        // return false;
+
+        // 2 pointer approach
+        // int idx[] = new int[2];
+        int lp = 0;
+        int rp = arr.length - 1;
+        while (lp < rp) {
+            if (arr[lp] + arr[rp] == target) {
+                return true;
+            }
+            if (arr[lp] + arr[rp] < target)
+                lp++;
+            else
+                rp--;
         }
         return false;
     }
@@ -108,9 +124,11 @@ public class List {
         // }
         // System.out.println();
         // }
-        int height[] = { 1, 8, 6, 2, 5, 4, 8, 3, 7 };
-        // System.out.println(maxArea(height));
-        int arr[] = { 1, 2, 3, 4, 5, 6 };
-        System.out.println(pairSum1(arr, 5));
+        // int height[] = { 1, 8, 6, 2, 5, 4, 8, 3, 7 };
+        // // System.out.println(maxArea(height));
+        // int arr[] = { 1, 2, 3, 4, 5, 6 };
+        // System.out.println(pairSum1(arr, 5));
+        int arr[] = { 2, 7, 11, 15 };
+        System.out.println(pairSum1(arr, 9));
     }
 }

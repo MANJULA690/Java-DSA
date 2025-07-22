@@ -16,12 +16,20 @@ public class Arrays {
         return -1;
     }
 
-    public static int largest(int marks[]) {
-        int max = Integer.MIN_VALUE; // - infinity
-        for (int i = 0; i < marks.length; i++) {
-            if (max < marks[i]) {
-                max = marks[i];
-            }
+    // public static int largest(int marks[]) {
+    // int max = Integer.MIN_VALUE; // - infinity
+    // for (int i = 0; i < marks.length; i++) {
+    // if (max < marks[i]) {
+    // max = marks[i];
+    // }
+    // }
+    // return max;
+    // }
+
+    public static int largest(int nums[]) {
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < nums.length; i++) {
+            max = Math.max(nums[i], max);
         }
         return max;
     }
@@ -29,7 +37,7 @@ public class Arrays {
     public static int binarySearch(int arr[], int key) {
         int start = 0, end = arr.length - 1;
         while (start <= end) {
-            int mid = (start + end) / 2;
+            int mid = start + (end - start) / 2;
             if (arr[mid] == key) {
                 return mid;
             }
@@ -66,25 +74,32 @@ public class Arrays {
     }
 
     public static void printSubArrays(int arr[]) {
+        int minSum = Integer.MAX_VALUE;
+        int maxSum = Integer.MIN_VALUE;
         for (int i = 0; i < arr.length; i++) {
             for (int j = i; j < arr.length; j++) {
+                int currSum = 0;
                 for (int k = i; k <= j; k++) {
-                    System.out.print(arr[k] + " ");
+                    // System.out.print(arr[k] + " ");
+                    currSum += arr[k];
                 }
-                System.out.println();
+                // System.out.println();
+                minSum = Math.min(minSum, currSum);
+                maxSum = Math.max(maxSum, currSum);
             }
-            System.out.println();
+            // System.out.println();
         }
+        System.out.println("min sum is: " + minSum);
+        System.out.println("max sum is: " + maxSum);
     }
 
     // brute force
     public static void maxSubarraySum(int arr[]) {
-        int currSum = 0;
         int maxSum = Integer.MIN_VALUE;
 
         for (int i = 0; i < arr.length; i++) {
             for (int j = i; j < arr.length; j++) {
-                currSum = 0;
+                int currSum = 0;
                 for (int k = i; k <= j; k++) {
                     currSum += arr[k];
                 }
@@ -221,6 +236,8 @@ public class Arrays {
         int heights[] = { 4, 2, 0, 6, 3, 2, 5 };
         int prices[] = { 7, 6, 4, 3, 1 };
         int nums[] = { 1, 2, 3, 4, 1, 2, 2, 2 };
-        System.out.println(majorityElement(nums));
+        // System.out.println(majorityElement(nums));
+        int abc[] = { 2, 4, 6, 8, 10 };
+        printSubArrays(abc);
     }
 }

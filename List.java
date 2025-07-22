@@ -129,6 +129,7 @@ public class List {
         // int arr[] = { 1, 2, 3, 4, 5, 6 };
         // System.out.println(pairSum1(arr, 5));
         int arr[] = { 2, 7, 11, 15 };
-        System.out.println(pairSum1(arr, 9));
+        // System.out.println(pairSum1(arr, 9));
+        System.out.println('a');
     }
 }

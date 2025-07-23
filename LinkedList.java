@@ -216,14 +216,52 @@ public class LinkedList {
         return true;
     }
 
+    public static boolean hasCycle() {
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void removeCycle() {
+        Node slow = head;
+        Node fast = head;
+        boolean cycle = false;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                cycle = true;
+                break;
+            }
+        }
+
+        slow = head;
+        Node prev = null;
+        while (slow != fast) {
+            prev = fast;
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        prev.next = null;
+    }
+
     public static void main(String args[]) {
-        LinkedList ll = new LinkedList();
-        ll.addFirst(2);
-        ll.addFirst(1);
-        ll.addLast(2);
-        ll.addLast(1);
-        ll.add(2, 3);
-        ll.printLL();
+        // LinkedList ll = new LinkedList();
+        // ll.addFirst(2);
+        // ll.addFirst(1);
+        // ll.addLast(2);
+        // ll.addLast(1);
+        // ll.add(2, 3);
+        // ll.printLL();
         // System.out.println(ll.size);
         // System.out.println(ll.removeFirst());
         // System.out.println(ll.removeLast());
@@ -233,6 +271,14 @@ public class LinkedList {
         // ll.reverse();
         // ll.deleteNthFromEnd(5);
         // ll.printLL();
-        System.out.println(ll.isPalindrome());
+        // System.out.println(ll.isPalindrome());
+        head = new Node(1);
+        Node temp = new Node(2);
+        head.next = temp;
+        head.next.next = new Node(3);
+        head.next.next.next = temp;
+        System.out.println(hasCycle());
+        removeCycle();
+        System.out.println(hasCycle());
     }
 }

@@ -254,14 +254,56 @@ public class LinkedList {
         prev.next = null;
     }
 
+    public void zigZag() {
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        Node mid = slow;
+
+        Node curr = mid.next;
+        mid.next = null;
+        Node prev = null;
+        Node next;
+
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        Node left = head;
+        Node right = prev;
+        Node nextL, nextR;
+
+        while (left != null && right != null) {
+            nextL = left.next;
+            left.next = right;
+            nextR = right.next;
+            right.next = nextL;
+
+            left = nextL;
+            right = nextR;
+        }
+    }
+
     public static void main(String args[]) {
-        // LinkedList ll = new LinkedList();
-        // ll.addFirst(2);
-        // ll.addFirst(1);
-        // ll.addLast(2);
-        // ll.addLast(1);
+        LinkedList ll = new LinkedList();
+        ll.addLast(1);
+        ll.addLast(2);
+        ll.addLast(3);
+        ll.addLast(4);
+        ll.addLast(5);
+        ll.addLast(6);
         // ll.add(2, 3);
-        // ll.printLL();
+        ll.printLL();
+        ll.zigZag();
+        ll.printLL();
         // System.out.println(ll.size);
         // System.out.println(ll.removeFirst());
         // System.out.println(ll.removeLast());
@@ -272,13 +314,13 @@ public class LinkedList {
         // ll.deleteNthFromEnd(5);
         // ll.printLL();
         // System.out.println(ll.isPalindrome());
-        head = new Node(1);
-        Node temp = new Node(2);
-        head.next = temp;
-        head.next.next = new Node(3);
-        head.next.next.next = temp;
-        System.out.println(hasCycle());
-        removeCycle();
-        System.out.println(hasCycle());
+        // head = new Node(1);
+        // Node temp = new Node(2);
+        // head.next = temp;
+        // head.next.next = new Node(3);
+        // head.next.next.next = temp;
+        // System.out.println(hasCycle());
+        // removeCycle();
+        // System.out.println(hasCycle());
     }
 }

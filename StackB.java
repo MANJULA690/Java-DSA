@@ -10,6 +10,7 @@ public class StackB {
     // this.data = data;
     // this.next = null;
     // }
+
     // }
 
     // static class Stack {
@@ -69,7 +70,6 @@ public class StackB {
     // if (isEmpty())
     // return -1;
     // return head.data;
-    // }
     // }
 
     public static void pushAtBottom(Stack<Integer> s, int data) {
@@ -243,7 +243,7 @@ public class StackB {
         // }
         // System.out.println(isValid("]})"));
         // System.out.println(isDuplicate("(a+b)"));
-        int[] heights = { 2, 1, 5, 6, 2, 3 };
-        System.out.println(largestRectangleArea(heights));
+        // int[] heights = { 2, 1, 5, 6, 2, 3 };
+        // System.out.println(largestRectangleArea(heights));
     }
 }

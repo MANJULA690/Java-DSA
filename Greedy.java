@@ -96,5 +96,39 @@ public class Greedy {
         for (int i = 0; i < ans.size(); i++) {
             System.out.print(ans.get(i) + " ");
         }
+        System.out.println();
+
+        Integer verCost[] = { 2, 1, 3, 1, 4 };
+        Integer horCost[] = { 4, 1, 2 };
+
+        Arrays.sort(verCost, Comparator.reverseOrder());
+        Arrays.sort(horCost, Comparator.reverseOrder());
+
+        int h = 0, v = 0;
+        int hp = 1, vp = 1;
+        int cost = 0;
+
+        while (h < horCost.length && v < verCost.length) {
+            if (verCost[v] <= horCost[h]) {
+                cost += horCost[h] * vp;
+                hp++;
+                h++;
+            } else {
+                cost += verCost[v] * hp;
+                vp++;
+                v++;
+            }
+        }
+        while ((h < horCost.length)) {
+            cost += horCost[h] * vp;
+            h++;
+            hp++;
+        }
+        while (v < verCost.length) {
+            cost += verCost[v] * hp;
+            v++;
+            vp++;
+        }
+        System.out.println("min cost for cuts : " + cost);
     }
 }

@@ -346,6 +346,45 @@ public class BinaryTreeB {
             return data;
         }
 
+        public static boolean uniValued(Node root) {
+            if (root == null) {
+                return true;
+            }
+            if (root.left != null && root.data != root.left.data) {
+                return false;
+            }
+            if (root.right != null && root.data != root.right.data) {
+                return false;
+            }
+            return uniValued(root.left) && uniValued(root.right);
+        }
+
+        public static Node invertTree(Node root) {
+            if (root == null) {
+                return root;
+            }
+            Node left = invertTree(root.left);
+            Node right = invertTree(root.right);
+
+            root.left = right;
+            root.right = left;
+
+            return root;
+        }
+
+        public static Node deleteLeaves(Node root, int x) {
+            if (root == null) {
+                return null;
+            }
+            root.left = deleteLeaves(root.left, x);
+            root.right = deleteLeaves(root.right, x);
+
+            if (root.data == x && root.left == null && root.right == null) {
+                return null;
+            }
+            return root;
+        }
+
     }
 
     public static void main(String[] args) {
@@ -371,8 +410,12 @@ public class BinaryTreeB {
         System.out.println(tree.lca(root, 4, 6).data);
         System.out.println(tree.lca2(root, 4, 6).data);
         System.out.println(tree.minDist(root, 4, 3));
-        tree.kAncestor(root, 5, 1);
-        tree.transform(root);
+        // tree.kAncestor(root, 5, 1);
+        // tree.transform(root);
+        // tree.preorder(root);
+        // System.out.println(tree.uniValued(root));
+        // tree.invertTree(root);
+        tree.deleteLeaves(root, 3);
         tree.preorder(root);
     }
 }

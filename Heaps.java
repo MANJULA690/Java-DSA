@@ -107,6 +107,40 @@ public class Heaps {
         }
     }
 
+    public static class Row implements Comparable<Row> {
+        int soldier;
+        int idx;
+
+        public Row(int soldier, int idx) {
+            this.soldier = soldier;
+            this.idx = idx;
+        }
+
+        @Override
+        public int compareTo(Row r2) {
+            if (this.soldier == r2.soldier) {
+                return this.idx - r2.idx;
+            }
+            return this.soldier - r2.soldier;
+        }
+
+    }
+
+    public static class Pair implements Comparable<Pair> {
+        int val;
+        int idx;
+
+        public Pair(int val, int idx) {
+            this.val = val;
+            this.idx = idx;
+        }
+
+        @Override
+        public int compareTo(Pair p2) {
+            return p2.val - this.val;
+        }
+    }
+
     // static class Student implements Comparable<Student> {
     // String name;
     // int rank;
@@ -156,18 +190,53 @@ public class Heaps {
         // for (int i = 0; i < k; i++) {
         // System.out.println("C" + pq.remove().idx);
         // }
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
-        int[] ropes = { 2, 3, 3, 4, 6 };
-        for (int i = 0; i < ropes.length; i++) {
-            pq.add(ropes[i]);
+        // PriorityQueue<Integer> pq = new PriorityQueue<>();
+        // int[] ropes = { 2, 3, 3, 4, 6 };
+        // for (int i = 0; i < ropes.length; i++) {
+        // pq.add(ropes[i]);
+        // }
+        // int cost = 0;
+        // while (pq.size() > 1) {
+        // int min = pq.remove();
+        // int min2 = pq.remove();
+        // cost += min + min2;
+        // pq.add(min + min2);
+        // }
+        // System.out.println("total min cost: " + cost);
+        // int[][] army = { { 1, 0, 0, 0 },
+        // { 1, 1, 1, 1 },
+        // { 1, 0, 0, 0 },
+        // { 1, 0, 0, 0 } };
+        // // int k=2;
+        // PriorityQueue<Row> pq = new PriorityQueue<>();
+        // for (int i = 0; i < army.length; i++) {
+        // int count = 0;
+        // for (int j = 0; j < army[0].length; j++) {
+        // count += army[i][j] == 1 ? 1 : 0;
+        // }
+        // pq.add(new Row(count, i));
+        // }
+        // for (int i = 0; i < 2; i++) {
+        // System.out.println("R" + pq.remove().idx);
+        // }
+        int[] array = { 1, 3, -1, -3, 5, 3, 6, 7 };
+        int K = 3;
+        int[] res = new int[array.length - K + 1];
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
+        for (int i = 0; i < k; i++) {
+            pq.add(new Pair(array[i], i));
         }
-        int cost = 0;
-        while (pq.size() > 1) {
-            int min = pq.remove();
-            int min2 = pq.remove();
-            cost += min + min2;
-            pq.add(min + min2);
+        res[0] = pq.peek().val;
+        for (int i = K; i < array.length; i++) {
+            while (pq.size() > 0 && pq.peek().idx <= (i - K)) {
+                pq.remove();
+            }
+            pq.add(new Pair(array[i], i));
+            res[i - K + 1] = pq.peek().val;
         }
-        System.out.println("total min cost: " + cost);
+
+        for (int i = 0; i < res.length; i++) {
+            System.out.print(res[i] + " ");
+        }
     }
 }

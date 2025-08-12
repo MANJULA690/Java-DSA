@@ -50,6 +50,38 @@ public class Hashing {
         System.out.println("intersection : " + count);
     }
 
+    public static int subArrayLen(int[] nums) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int sum = 0;
+        int len = 0;
+
+        for (int j = 0; j < nums.length; j++) {
+            sum += nums[j];
+            if (map.containsKey(sum)) {
+                len = Math.max(len, j - map.get(sum));
+            } else {
+                map.put(sum, j);
+            }
+        }
+        return len;
+    }
+
+    public static int subArrayCount(int[] nums, int k) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(0, 1);
+        int sum = 0;
+        int count = 0;
+
+        for (int j = 0; j < nums.length; j++) {
+            sum += nums[j];
+            if (map.containsKey(sum - k)) {
+                count += map.get(sum - k);
+            }
+            map.put(sum, map.getOrDefault(sum, 0) + 1);
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
         int[] nums = { 1, 3, 2, 5, 1, 3, 1, 5, 1 };
         // HashMap<Integer, Integer> map = new HashMap<>();
@@ -98,5 +130,9 @@ public class Hashing {
         int[] arr1 = { 7, 3, 9, 4 };
         int[] arr2 = { 6, 3, 9, 2, 9, 4 };
         unionIntersection(arr1, arr2);
+        int[] arr = { 15, 2, -2, -8, 1, 7, 10, 23 };
+        System.out.println(subArrayLen(arr));
+        int[] num = { 10, 2, -2, -20, 10 };
+        System.out.println(subArrayCount(num, -10));
     }
 }
